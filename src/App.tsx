@@ -1,14 +1,17 @@
 import React from 'react';
-import './App.css';
-import './form.less'
-import Form from './form';
+// import './form.scss'
+import './App.css'
+import FormFile from './form';
 import 'antd/dist/antd.css';
+import FormBonus from './components/formBonus';
+import Demo from './components/fields';
 
 function App() {
   return (
-    <div className="App">
-      <Form/>
-      <p className="test">hi</p>
+    <div>
+      <FormFile/>
+      {/* <FormBonus/> */}
+      <Demo/>
     </div>
   );
 }

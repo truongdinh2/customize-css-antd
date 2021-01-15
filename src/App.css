@@ -1,4 +1,17 @@
 /* .test{
   color:red
 } */
-@import './form.less'
+/* @import './form.less' */
+.ant-tabs-tab-btn{
+  color:#e76c34 !important;
+}
+.ant-form-item-control-input-content{
+  display: flex;
+  justify-content: center;
+}
+/* * {
+  border: 1px solid red !important;
+} */
+.ant-form-item-control:first-child:not([class^='ant-col-']):not([class*=' ant-col-']) {
+  width: 40vw !important;
+}
