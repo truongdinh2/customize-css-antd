@@ -1,17 +1,19 @@
+import 'antd/dist/antd.css';
 import React from 'react';
 // import './form.scss'
-import './App.css'
+import './App.css';
+import TableData from './components/tableData/table';
 import FormFile from './form';
-import 'antd/dist/antd.css';
-import FormBonus from './components/formBonus';
-import Demo from './components/fields';
+import Test from './test';
 
 function App() {
   return (
     <div>
-      <FormFile/>
+      <FormFile />
       {/* <FormBonus/> */}
-      <Demo/>
+      {/* <Demo/> */}
+      <Test />
+      <TableData />
     </div>
   );
 }

@@ -1,10 +1,18 @@
-import { Form, Input, Button, Space, Row, Col, Divider, Typography } from 'antd';
+import { Form, Input, Button, Space, Row, Col, Divider, Typography, DatePicker } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { FormValues } from './typesc/form';
+// import { FormValues } from './typesc/form';
 import { useEffect, useState } from 'react';
-
+// import Moment from 'react-moment';
+import moment from 'moment';
+interface FormValues {
+    task1: {
+        date?: Date | string,
+        date1: string | Date
+    } | any
+    // task1: any
+}
 const FormFile = () => {
-    const [dataForm, setDataForm] = useState({});
+    const [dataForm, setDataForm] = useState<FormValues>({ task1: {} });
     const [form] = Form.useForm()
     // const obj = {t:3,r:33,w:1}
     // console.log(obj['t'])
@@ -16,59 +24,30 @@ const FormFile = () => {
 
     //     console.log(dataForm)
     //   });
-    useEffect(() => {
-        form.setFieldsValue( '');
-
-        // console.log()
-    });
-    const onFinish1 = async (values: any) => {
-        form.setFieldsValue( '');
-        console.log(values.user)
-        // if (!dataEdit) {
-        //     fetch("https://5fbb65b4c09c200016d406f6.mockapi.io/Project", {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify(values.user),
-        //     }).then(() => {
-        //         success()
-        //         props.onChangeOpen()
-        //     });
-        // } else {
-        //     fetch(`https://5fbb65b4c09c200016d406f6.mockapi.io/Project/${dataEdit.id}`, {
-        //         method: "PUT",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(values.user),
-        //     }
-        //     ).then(() => {
-        //         props.onChangeOpen()
-        //         success();
-        //     })
-        // }
-    };
-
-  
+    // useEffect(() => {
+    //     form.setFieldsValue('');
+    // });
     const onFinish = (values: FormValues) => {
-        setDataForm(values);
-        // form.set
-        console.log(form)
-        form.setFieldsValue('')
-        // form.resetFields([''])
-        console.log('hi')
+        const dateFormat = moment(values.task1.date).format("MM/DD/YYYY");
+        setDataForm({ task1: { ...values.task1, date1: dateFormat } });
+
         console.log('Received values of form:', values);
     };
+    console.log(dataForm)
     const click = () => {
-        form.setFieldsValue({ task1: dataForm });
-        alert('hi')
+        form.setFieldsValue({ task1: dataForm.task1 });
+        console.log('hi')
+        console.log(dataForm.task1)
+        console.log(dataForm)
     }
     return (
         <div style={{ width: '90%', margin: '10px auto' }}>
             <Form name="dynamic_form_nest_item" onFinish={onFinish}
                 form={form}
                 autoComplete="off">
+                <Form.Item name={['task1', 'date']}>
+                    <DatePicker placeholder="date" />
+                </Form.Item>
                 <Space
                     direction="horizontal"
                     style={{ display: 'flex', justifyContent: "space-between", }}
@@ -95,6 +74,7 @@ const FormFile = () => {
                     {(fields, { add, remove }) => (
                         <>
                             {fields.map(field => (
+
                                 <Space key={field.key}
                                     style={{ display: 'flex', flexDirection: 'row-reverse' }}
                                     align="baseline"
@@ -105,6 +85,7 @@ const FormFile = () => {
                                         fieldKey={[field.fieldKey, 'first']}
                                         rules={[{ required: true, message: 'Missing this field' }]}
                                     >
+                                        {console.log(field)}
                                         <Input placeholder="Content task" />
                                     </Form.Item>
                                     <MinusCircleOutlined onClick={() => remove(field.name)} />
@@ -118,47 +99,16 @@ const FormFile = () => {
                         </>
                     )}
                 </Form.List>
+
+
                 <Form.Item>
                     <Button type="primary" htmlType="submit" style={{ display: "flex", justifyContent: "center" }}>
                         Submit
                         </Button>
                 </Form.Item>
             </Form>
-            <Space split={<Divider type="vertical" />}>
-                <Typography.Link>Link</Typography.Link>
-                <Typography.Link>Link</Typography.Link>
-                <Typography.Link>Link</Typography.Link>
-            </Space>
+
             <button onClick={click}>hi</button>
-
-
-
-            <Form name="nest-messages" onFinish={onFinish1}
-                form={form}>
-                <Form.Item name={['user', 'Name']} label="Name" rules={[{ required: true }]}>
-                    <Input
-                    />
-                </Form.Item>
-
-                <Form.Item name={['user', 'Date_begin']} label="Date begin" rules={[
-                    { required: true }]}>
-                    <Input type="date" />
-                </Form.Item>
-                <Form.Item name={['user', 'Time_expected']}
-                    label="Time expected" rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={['user', 'NumberPepole']} label="Leader"
-                    rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item >
-                    <Button type="primary" htmlType="submit" className="btn"
-                    >
-                        Submit
-        </Button>
-                </Form.Item>
-            </Form>
         </div>
 
     )
