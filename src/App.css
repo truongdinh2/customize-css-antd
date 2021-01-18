@@ -15,3 +15,7 @@
 .ant-form-item-control:first-child:not([class^='ant-col-']):not([class*=' ant-col-']) {
   width: 40vw !important;
 }
+.ant-space-item{
+  margin-left: 8px !important;
+  margin-right: 0 !important;
+}
