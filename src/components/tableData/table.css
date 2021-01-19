@@ -1,0 +1,17 @@
+.detailTable{
+    width: 100%;
+}
+.detailTable tr{
+    border-bottom: 1px solid black;
+}
+.detailTable td,th{
+    padding: 1%;
+    text-align: center;
+}
+.detailTable th{
+    text-align: center !important;
+}
+.chartjs {
+    width: 400px;
+}
+.detailTable tr:nth-child(even){background-color: #f2f2f2;}
