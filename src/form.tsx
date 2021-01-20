@@ -42,9 +42,11 @@ const FormFile = () => {
     }
     return (
         <div style={{ width: '90%', margin: '10px auto' }}>
-            <Form name="dynamic_form_nest_item" onFinish={onFinish}
+            <Form
+                name="dynamic_form_nest_item" onFinish={onFinish}
                 form={form}
-                autoComplete="off">
+                autoComplete="off"
+                >
                 <Form.Item name={['task1', 'date']}>
                     <DatePicker placeholder="date" />
                 </Form.Item>
