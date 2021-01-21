@@ -1,9 +1,12 @@
 import 'antd/dist/antd.css';
+import MUIDataTable from 'mui-datatables';
 import React from 'react';
 // import './form.scss'
 import './App.css';
 import TableData from './components/tableData/table';
+import Example from './example';
 import FormFile from './form';
+import MuDataTable from './muiDataTable/MuiDataTable';
 import Test from './test';
 
 function App() {
@@ -13,7 +16,8 @@ function App() {
       {/* <FormBonus/> */}
       {/* <Demo/> */}
       <Test />
-      <TableData />
+      {/* <TableData /> */}
+      <MuDataTable/>
     </div>
   );
 }

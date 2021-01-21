@@ -23,6 +23,11 @@ body {
 .sumary {
   margin: 10% 0;
 }
+.btnTable{
+  cursor: pointer;
+}
+
+
 
 @media screen and (max-width: 1197px) {
   .table1 {

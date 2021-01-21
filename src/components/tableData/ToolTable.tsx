@@ -44,7 +44,8 @@ export default function ToolTable() {
     }
     const onFinish = (values: any) => {
         setLocationFilter(values);
-        setLoading(!loading)
+        setLoading(!loading);
+        setIsFilterBox(!isFilterBox)
     }
     // const OptionSelect = () => (
     //     dataRedux.data.map((data: any,index:number)=>(
@@ -56,7 +57,7 @@ export default function ToolTable() {
     // )
     const FilterBox = () => (
         <div className="model_filter" >
-            {loading &&
+            {/* {loading && */}
                 <Form
                     name="dynamic_form_nest_item"
                     onFinish={onFinish}
@@ -122,17 +123,10 @@ export default function ToolTable() {
                     <div>
                         <Button htmlType="submit"  >sub</Button>
                     </div>
-                </Form>}
+                </Form>
 
         </div>
     )
-    // const getGitHubUserWithFetch1 = async () => {
-    //     const response = await fetch("https://5fbb616ec09c200016d4067a.mockapi.io/kito");
-    //     const jsonData = await response.json();
-    //     console.log(jsonData);
-    //     return jsonData;
-    // };
-    // console.log(getGitHubUserWithFetch1())
     console.log(locationFilter)
     const FilterData = () => {
         // console.log(locationFilter.location);
@@ -155,7 +149,7 @@ export default function ToolTable() {
                         className="btn_icon"
                         onClick={() => setIsFilterBox(!isFilterBox)}
                     ><FilterListRoundedIcon color="secondary" /></button>
-                    {isFilterBox && <FilterBox></FilterBox>}
+                    {isFilterBox && <FilterBox/>}
                 </div>
             </div>
         </>
