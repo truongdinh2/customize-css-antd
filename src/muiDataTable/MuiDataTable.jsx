@@ -6,7 +6,21 @@ import './muiDataTable.css';
 
 const MuDataTable = () => {
     const [searchText, setSearchText] = useState('');
-    const [responsive, setResponsive] = useState('standard')
+    const [responsive, setResponsive] = useState('standard');
+    const [isInfor, setIsInfor] = useState(false);
+    const handleSetForm = (params) => {
+        console.log(params);
+        setIsInfor(!isInfor)
+        FormInfor()
+    }
+    const FormInfor = () => (
+        <div className="boxShow">
+            <div><h1> Infomation </h1></div>
+            <div>How to "decode" your zodiac sign (this is cool!)
+            This is completely shocking...
+            It's actually kind of scary how accurate my results were!</div>
+        </div>
+    )
     const columns = [
         // {
         //     name: "Delete",
@@ -108,18 +122,23 @@ const MuDataTable = () => {
                 sort: false,
                 empty: true,
                 customBodyRenderLite: (dataIndex) => {
+                    var NumberPhone = stateReducer.data[dataIndex].phone_link.toString();
+                    // console.log(typeof(NumberPhone))
+                    // var len = NumberPhone.length;
+                    var NumberPhone1 = NumberPhone.replace(/\d(?=\d{4})/g, "*");
+                    // console.log(stateReducer.data[dataIndex].id)
+                    // console.log(NumberPhone.splice(len - 3,3,'***'))
                     return (
                         <div
-                            style={{margin:'auto',textAlign:"center"}}
+                            style={{ margin: 'auto', textAlign: "center" }}
                             className="btnTable"
-                            onClick={() => {
-                                console.log('hi')
+                            onClick={() => handleSetForm(stateReducer.data[dataIndex].id)
                                 // var data1 = [...data];
 
                                 // data1.unshift(["Mason Ray", "Computer Scientist", "San Francisco", 39, "$142,000", ["hi"]]);
                                 // setData(data1);
-                            }}>
-                           {stateReducer.data === {} ? '' : stateReducer.data[dataIndex].phone_link}
+                            }>
+                            {stateReducer.data === {} ? '' : NumberPhone1}
                         </div>
                     );
                 }
@@ -157,7 +176,7 @@ const MuDataTable = () => {
     ];
     const options = {
         filter: true,
-        filterType: 'checkbox',
+        filterType: 'dropdown',
         responsive: 'standard',
         onColumnSortChange: (changedColumn, direction) => console.log('changedColumn: ', changedColumn, 'direction: ', direction),
         onChangeRowsPerPage: numberOfRows => console.log('numberOfRows: ', numberOfRows),
@@ -170,8 +189,8 @@ const MuDataTable = () => {
         //     }
         // },
         onTableChange: (action, state) => {
-            console.log(action);
-            console.dir(state);
+            // console.log(action);
+            // console.dir(state);
         },
         // selectableRowsHeader:false,
         selectableRowsHideCheckboxes: true,
@@ -228,27 +247,31 @@ const MuDataTable = () => {
     };
     console.log(responsive)
     const stateReducer = useSelector(state => state.dataSide);
-    console.log(stateReducer)
     return (
-        <div className="containerTable">
-            <FormControl>
-                <InputLabel id="demo-simple-select-label">Responsive Option</InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={responsive}
-                    // defaultValue={responsive}
-                    style={{ width: '200px', marginBottom: '10px', marginRight: 10 }}
-                    onChange={e => setResponsive(e.target.value)}>
-                    <MenuItem value={'vertical'}>vertical</MenuItem>
-                    <MenuItem value={'standard'}>standard</MenuItem>
-                    <MenuItem value={'simple'}>simple</MenuItem>
+        <>
+            <div className="containerTable">
+                <FormControl>
+                    <InputLabel id="demo-simple-select-label">Responsive Option</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={responsive}
+                        // defaultValue={responsive}
+                        style={{ width: '200px', marginBottom: '10px', marginRight: 10 }}
+                        onChange={e => setResponsive(e.target.value)}>
+                        <MenuItem value={'vertical'}>vertical</MenuItem>
+                        <MenuItem value={'standard'}>standard</MenuItem>
+                        <MenuItem value={'simple'}>simple</MenuItem>
 
 
-                </Select>
-            </FormControl>
-            {stateReducer.data === {} ? '' :  <MUIDataTable title={'table'} data={stateReducer.data} columns={columns} options={options} />}
-        </div>
+                    </Select>
+                </FormControl>
+                {stateReducer.data === {} ? '' : <MUIDataTable title={'table'} data={stateReducer.data} columns={columns} options={options} />}
+                {isInfor && <FormInfor />}
+            </div>
+            <div>
+            </div>
+        </>
     );
 
 }

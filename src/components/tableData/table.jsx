@@ -25,7 +25,7 @@ export default function TableData() {
       setRowCovy(params)
     }
   }
-  console.log(dataApi)
+  // console.log(dataApi)
   return (
     <>
     <ToolTable/>

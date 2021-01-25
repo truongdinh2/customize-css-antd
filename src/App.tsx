@@ -12,10 +12,10 @@ import Test from './test';
 function App() {
   return (
     <div>
-      <FormFile />
+      {/* <FormFile /> */}
       {/* <FormBonus/> */}
       {/* <Demo/> */}
-      <Test />
+      {/* <Test /> */}
       <TableData />
       <MuDataTable/>
     </div>

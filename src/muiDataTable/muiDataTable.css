@@ -21,6 +21,13 @@
 .MUIDataTableToolbar-left-15 {
     margin-left: 45% !important;
 }
+.MuiPopover-paper{
+    max-height: 500px !important;
+}
+.boxShow{
+    position: absolute;
+    
+}
 @media screen and (max-width: 400px) {
     .MuiTableCell-root.MuiTableCell-body.MUIDataTableBodyCell-root-66 {
         padding: 1px 5px !important;
